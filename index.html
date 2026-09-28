@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#050816" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Per-page <title> and <meta> are rendered by <Seo> and hoisted here by
+         React 19. These are the defaults shown before hydration and to any
+         crawler that does not execute JavaScript. -->
+    <title>IUNGO Technology — Global AI &amp; Software Engineering Partner</title>
+    <meta
+      name="description"
+      content="IUNGO Technology is a global AI and software engineering team delivering advanced AI solutions, full-stack applications, enterprise platforms and immersive 3D experiences for businesses worldwide."
+    />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="IUNGO Technology" />
+    <meta property="og:title" content="IUNGO Technology — Global AI &amp; Software Engineering Partner" />
+    <meta
+      property="og:description"
+      content="6+ years delivering AI solutions, full-stack applications and enterprise platforms for clients across the US and Europe."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- ====================================================================
+         NETLIFY FORM DETECTION — do not delete.
+
+         Netlify registers forms by parsing the HTML it receives at build
+         time. It never runs your JavaScript, so it cannot see a form that
+         React renders at runtime. This static copy is what registers the
+         forms below and their fields; the real React forms on /contact then
+         POST to them. The field names here must stay in sync with
+         src/components/sections/ContactForm.tsx and CareersForm.tsx.
+         ==================================================================== -->
+
+    <!-- Project enquiries → ContactForm.tsx -->
+    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="text" name="company" />
+      <input type="text" name="projectType" />
+      <input type="text" name="budget" />
+      <textarea name="message"></textarea>
+      <input type="text" name="bot-field" />
+    </form>
+
+    <!-- Job applications → CareersForm.tsx -->
+    <form name="careers" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="text" name="location" />
+      <textarea name="message"></textarea>
+      <input type="text" name="bot-field" />
+    </form>
+
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
