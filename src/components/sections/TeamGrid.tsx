@@ -4,11 +4,21 @@ import { Reveal } from '@/components/ui/Reveal'
 import { team } from '@/data/team'
 import { cn } from '@/lib/cn'
 
-/** Initials fallback used until real headshots are supplied. */
+/**
+ * Initials fallback used until real headshots are supplied.
+ *
+ * Splits on whitespace and then on internal capitals, so a name written as
+ * one word — "HuaSheng" — yields the same two-letter monogram as one written
+ * with a space. People write their names the way they write them; the avatar
+ * should not depend on that choice.
+ */
 function initials(name: string) {
-  return name
-    .split(' ')
-    .filter(Boolean)
+  const parts = name
+    .trim()
+    .split(/\s+/)
+    .flatMap((word) => word.match(/\p{Lu}\p{Ll}*|\p{Ll}+/gu) ?? [word])
+
+  return parts
     .slice(0, 2)
     .map((part) => part[0]?.toUpperCase() ?? '')
     .join('')

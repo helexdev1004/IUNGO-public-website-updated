@@ -1,15 +1,14 @@
 /* ==========================================================================
    Team roster.
 
-   TWO THINGS TO CONFIRM — both are one-line fixes here:
+   NAME FORMATTING. Each name is written the way its owner writes it, which is
+   why "HuaSheng" is one word while "Jie Hong" is two. That is deliberate, not
+   an inconsistency to tidy up — the monogram avatar handles both spellings.
 
-   1. NAME FORMATTING. The Chinese names were supplied without spaces
-      (FuaSheng, JieHong). They are written with a space below so the grid
-      reads consistently next to "Dayu Jiang". If any of these people write
-      their name as one word, change it back — their preference wins.
-
-   2. "Xinning Shen" was supplied as "XinnignShen". Corrected because "nign"
-      is not a possible pinyin syllable, but please confirm the spelling.
+   TO CONFIRM: "Xinning Shen" was supplied as "XinnignShen" and corrected here
+   because "nign" is not a possible pinyin syllable. Worth checking with them.
+   "Jie Hong" was supplied unspaced ("JieHong") and may want the same
+   treatment as HuaSheng.
 
    Still to add: `expertise` is empty for everyone, so the skill-chip row is
    hidden on every card. Two or three entries each will fill it in.
@@ -45,7 +44,7 @@ export const team: TeamMember[] = [
     accent: 'blue',
   },
   {
-    name: 'Fua Sheng',
+    name: 'HuaSheng',
     role: 'Senior Developer',
     expertise: [],
     location: 'China',
