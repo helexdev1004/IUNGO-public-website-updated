@@ -79,6 +79,13 @@ export const team: TeamMember[] = [
     location: 'Brazil',
     accent: 'green',
   },
+  {
+    name: 'Jose Souza',
+    role: 'HR Assistant',
+    expertise: [],
+    location: 'Brazil',
+    accent: 'blue',
+  },
 ]
 
 /* Node positions for the globe visualisation, as percentages of its bounding
