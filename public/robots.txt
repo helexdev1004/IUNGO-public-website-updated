@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
 
-# TODO(setup): update the host once the live domain is confirmed.
-Sitemap: https://iungotech.com/sitemap.xml
+# Keep in step with site.url in src/data/site.ts and public/sitemap.xml.
+Sitemap: https://iungotech.netlify.app/sitemap.xml
