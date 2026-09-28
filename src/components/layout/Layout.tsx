@@ -3,6 +3,7 @@ import { Outlet, useLocation } from 'react-router-dom'
 
 import { Footer } from '@/components/layout/Footer'
 import { Navbar } from '@/components/layout/Navbar'
+import { CustomCursor } from '@/components/visuals/CustomCursor'
 
 /** Restores the top of the page on route change, but respects in-page anchors. */
 function ScrollManager() {
@@ -26,6 +27,7 @@ export function Layout() {
   return (
     <div className="relative flex min-h-screen flex-col">
       <ScrollManager />
+      <CustomCursor />
 
       <a
         href="#main"

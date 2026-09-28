@@ -196,6 +196,16 @@
     background: #34456f;
   }
 
+  /* Custom cursor.
+     The `cursor-custom` class is added at runtime by CustomCursor, never in
+     the markup — if that script fails to run, the native cursor stays. Text
+     fields keep their I-beam: it conveys "you can type here", which a dot
+     cannot, and the custom cursor hides itself over them. */
+  html.cursor-custom,
+  html.cursor-custom *:not(input):not(textarea):not(select) {
+    cursor: none;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
