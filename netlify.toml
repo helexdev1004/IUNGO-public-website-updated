@@ -4,8 +4,9 @@
 # FORMS: the site has two — "contact" and "careers". Where their submissions
 # are emailed CANNOT be set here; Netlify has no netlify.toml option for it.
 # Set it once per form in the dashboard:
-#   Forms → <form> → Form notifications → Add notification → Email notification
-# The recipient address is kept out of this repo; see DEPLOYMENT.local.md.
+#   Forms → Form submission notifications → Add notification → Email notification
+# A notification on "any form" covers both. The recipient address is kept out
+# of this public repo; see DEPLOYMENT.local.md.
 # Until that is done, submissions are stored under Forms but nobody is emailed.
 # ==========================================================================
 

@@ -89,12 +89,14 @@ no HTML field for it. It has to be done once in the Netlify UI, after the first 
 
 1. **Site configuration → Forms → enable form detection**, then redeploy. On newer Netlify
    accounts this is off by default, and neither form appears until a build runs with it on.
-2. **Forms → `contact` → Form notifications → Add notification → Email notification** →
+2. **Forms → Form submission notifications → Add notification → Email notification** →
    enter the team inbox. The address is deliberately not recorded in this repository,
    which is public; it is in `DEPLOYMENT.local.md` alongside this file.
-3. **Repeat for `careers`.** They are separate forms with separate notification settings —
-   configuring one does not configure the other. Applications can go to a different inbox
-   than enquiries if you prefer.
+
+   A notification set to fire **on new submission from any form** covers `contact` and
+   `careers` together — that is the simplest setup and what is configured today. Per-form
+   notifications exist too, if enquiries and applications should reach different inboxes;
+   in that case each form needs its own and configuring one does nothing for the other.
 
 Until both are set, submissions are still captured and visible under **Forms** in the Netlify
 dashboard, but nobody is emailed about them.
