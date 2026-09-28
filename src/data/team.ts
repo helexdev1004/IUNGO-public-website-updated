@@ -52,7 +52,7 @@ export const team: TeamMember[] = [
   },
   {
     name: 'Dayu Jiang',
-    role: 'Senior Developer',
+    role: 'Financial Manager',
     expertise: [],
     location: 'China',
     accent: 'blue',
