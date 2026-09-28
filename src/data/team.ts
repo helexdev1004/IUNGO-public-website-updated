@@ -79,11 +79,15 @@ export const team: TeamMember[] = [
     accent: 'green',
   },
   {
-    name: 'Jose Souza',
+    name: 'Jose Henrique',
     role: 'HR Assistant',
     expertise: [],
     location: 'Brazil',
-    accent: 'blue',
+    /* Green rather than the alternating blue: this monogram is "JH", the same
+       as Jie Hong's, and the two land in the same grid column. Differing
+       accents keep the placeholder avatars distinguishable. Moot once real
+       headshots are added. */
+    accent: 'green',
   },
 ]
 
