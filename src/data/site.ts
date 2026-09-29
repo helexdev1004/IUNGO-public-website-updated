@@ -53,7 +53,6 @@ export const site = {
       href: 'https://www.linkedin.com/company/%E5%8D%97%E4%BA%AC%E8%A1%8D%E6%9E%84%E7%A7%91%E6%8A%80%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8',
       icon: 'linkedin' as const,
     },
-    { label: 'GitHub', href: 'https://github.com/helexdev1004', icon: 'github' as const },
   ],
 }
 

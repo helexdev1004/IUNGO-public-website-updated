@@ -127,7 +127,7 @@ export function CareersForm() {
         <Field label="Who referred you?" hint="Optional" id={field('referral').id}>
           <input
             type="text"
-            placeholder="Their name"
+            placeholder="Name or website"
             className={inputClass()}
             {...field('referral')}
           />
