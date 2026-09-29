@@ -69,6 +69,62 @@ export const chatApps: ChatApp[] = [
   },
 ]
 
+/* Where an applicant may live. Offered as a dropdown rather than checked
+   against free text: "Berlin", "NYC" or "Bavaria" are all honest answers that
+   a string match would reject, and a false rejection turns away a real
+   applicant with no way round it. A list they pick from cannot be wrong.
+
+   Scope follows the posting's own wording — "the United States or Europe",
+   which is wider than the EU: the UK, Norway, Switzerland, Ukraine and the
+   rest of non-EU Europe are all in. Russia, Belarus and Turkey are left out;
+   add them here if a posting should accept them. */
+export const eligibleCountries = [
+  'United States',
+  'Albania',
+  'Andorra',
+  'Austria',
+  'Belgium',
+  'Bosnia and Herzegovina',
+  'Bulgaria',
+  'Croatia',
+  'Cyprus',
+  'Czechia',
+  'Denmark',
+  'Estonia',
+  'Finland',
+  'France',
+  'Germany',
+  'Greece',
+  'Hungary',
+  'Iceland',
+  'Ireland',
+  'Italy',
+  'Kosovo',
+  'Latvia',
+  'Liechtenstein',
+  'Lithuania',
+  'Luxembourg',
+  'Malta',
+  'Moldova',
+  'Monaco',
+  'Montenegro',
+  'Netherlands',
+  'North Macedonia',
+  'Norway',
+  'Poland',
+  'Portugal',
+  'Romania',
+  'San Marino',
+  'Serbia',
+  'Slovakia',
+  'Slovenia',
+  'Spain',
+  'Sweden',
+  'Switzerland',
+  'Ukraine',
+  'United Kingdom',
+]
+
 export const postings: Posting[] = [
   {
     code: '1e32jsdnn23',

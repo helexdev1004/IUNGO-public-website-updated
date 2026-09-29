@@ -123,10 +123,14 @@ and not search results. **Deleting the entry retires the posting** — the URL t
 through to the 404 page. Adding a second posting is one more object in that array; the page
 and the form are shared.
 
-Its form asks for name, location, email, a chat handle (Telegram, WhatsApp or Discord) and
-who referred the applicant. Location is required here, unlike the careers form, because
-these postings are open to US and EU residents only; the referral is optional, since these
-links get forwarded and requiring a name would turn away anyone who arrived without one.
+Its form asks for name, country and city, email, a chat handle (Telegram, WhatsApp or
+Discord) and who referred the applicant. **Country is a dropdown, not free text** — these
+postings are open to residents of the US and Europe only, and a list people pick from cannot
+be wrong, where a string match against "Berlin" or "NYC" would reject a real applicant. The
+countries offered are in `eligibleCountries` in `src/data/apply.ts`; the scope follows the
+posting's own wording ("the United States or Europe", wider than the EU) and leaves out
+Russia, Belarus and Turkey. The referral is optional, since these links get forwarded and
+requiring a name would turn away anyone who arrived without one.
 Each submission also carries a hidden
 `posting` field naming which posting it came from, which is what tells two postings apart in
 the Netlify dashboard.

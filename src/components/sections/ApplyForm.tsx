@@ -8,7 +8,7 @@ import {
   NetlifyFormFields,
   SelectShell,
 } from '@/components/ui/FormField'
-import { chatApps } from '@/data/apply'
+import { chatApps, eligibleCountries } from '@/data/apply'
 import { cn } from '@/lib/cn'
 import { inputClass } from '@/lib/formStyles'
 import { EMAIL_PATTERN, useNetlifyForm } from '@/lib/useNetlifyForm'
@@ -17,9 +17,12 @@ import { EMAIL_PATTERN, useNetlifyForm } from '@/lib/useNetlifyForm'
    are mirrored in the hidden static "apply" form in index.html — keep the two
    in step, or a new field is silently dropped.
 
-   What is asked for: name, location, email, a chat handle, and who referred
-   them. Location is required here (unlike the general careers form) because
-   these postings are open to US and EU residents only, and the chat handle is
+   What is asked for: name, where they live, email, a chat handle, and who
+   referred them.
+
+   Country is a dropdown of eligible countries rather than free text, because
+   these postings are open to US and European residents only and that is the
+   one requirement worth enforcing rather than trusting. The chat handle is
    how the first conversation actually happens. The referral is optional —
    these links get forwarded, and requiring a name would turn away anyone who
    arrived without one. */
@@ -28,7 +31,8 @@ const FORM_NAME = 'apply'
 
 interface Values extends Record<string, string> {
   name: string
-  location: string
+  country: string
+  city: string
   email: string
   chatApp: string
   chatHandle: string
@@ -42,9 +46,15 @@ function validate(values: Values) {
 
   if (!values.name.trim()) errors.name = 'Please tell us your name.'
 
-  if (!values.location.trim()) {
-    errors.location = 'This role is open to US and EU residents, so we need to know where you are.'
+  /* The second check only catches a tampered or stale value — the dropdown
+     cannot offer anything that fails it. */
+  if (!values.country) {
+    errors.country = 'Please choose the country you live in.'
+  } else if (!eligibleCountries.includes(values.country)) {
+    errors.country = 'This role is open to residents of the United States and Europe only.'
   }
+
+  if (!values.city.trim()) errors.city = 'Please add your city.'
 
   if (!values.email.trim()) {
     errors.email = 'We need an email address to reply to.'
@@ -68,7 +78,8 @@ export function ApplyForm({ postingCode, postingTitle }: { postingCode: string; 
     formName: FORM_NAME,
     initial: {
       name: '',
-      location: '',
+      country: '',
+      city: '',
       email: '',
       chatApp: '',
       chatHandle: '',
@@ -128,22 +139,46 @@ export function ApplyForm({ postingCode, postingTitle }: { postingCode: string; 
           />
         </Field>
 
-        <Field
-          label="Where you live"
-          required
-          hint="US or EU"
-          error={errors.location}
-          id={field('location').id}
-          errorId={errorId('location')}
-        >
-          <input
-            type="text"
-            autoComplete="address-level2"
-            placeholder="City, Country"
-            className={inputClass(errors.location)}
-            {...field('location')}
-          />
-        </Field>
+        <div className="grid gap-5 sm:grid-cols-2">
+          <Field
+            label="Country"
+            required
+            error={errors.country}
+            id={field('country').id}
+            errorId={errorId('country')}
+          >
+            <SelectShell>
+              <select
+                className={cn(inputClass(errors.country), 'appearance-none pr-10')}
+                autoComplete="country-name"
+                {...field('country')}
+              >
+                <option value="">Select your country…</option>
+                {eligibleCountries.map((country) => (
+                  <option key={country} value={country}>
+                    {country}
+                  </option>
+                ))}
+              </select>
+            </SelectShell>
+          </Field>
+
+          <Field
+            label="City"
+            required
+            error={errors.city}
+            id={field('city').id}
+            errorId={errorId('city')}
+          >
+            <input
+              type="text"
+              autoComplete="address-level2"
+              placeholder="Berlin"
+              className={inputClass(errors.city)}
+              {...field('city')}
+            />
+          </Field>
+        </div>
 
         <Field
           label="Email"
