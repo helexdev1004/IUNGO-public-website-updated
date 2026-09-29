@@ -123,9 +123,11 @@ and not search results. **Deleting the entry retires the posting** — the URL t
 through to the 404 page. Adding a second posting is one more object in that array; the page
 and the form are shared.
 
-Its form asks for four things and nothing else — name, location, email and a chat handle
-(Telegram, WhatsApp or Discord). Location is required here, unlike the careers form, because
-these postings are open to US and EU residents only. Each submission also carries a hidden
+Its form asks for name, location, email, a chat handle (Telegram, WhatsApp or Discord) and
+who referred the applicant. Location is required here, unlike the careers form, because
+these postings are open to US and EU residents only; the referral is optional, since these
+links get forwarded and requiring a name would turn away anyone who arrived without one.
+Each submission also carries a hidden
 `posting` field naming which posting it came from, which is what tells two postings apart in
 the Netlify dashboard.
 

@@ -17,10 +17,12 @@ import { EMAIL_PATTERN, useNetlifyForm } from '@/lib/useNetlifyForm'
    are mirrored in the hidden static "apply" form in index.html — keep the two
    in step, or a new field is silently dropped.
 
-   Four things are asked for and nothing else: name, location, email and a
-   chat handle. Location is required here (unlike the general careers form)
-   because these postings are open to US and EU residents only, and the chat
-   handle is how the first conversation actually happens. */
+   What is asked for: name, location, email, a chat handle, and who referred
+   them. Location is required here (unlike the general careers form) because
+   these postings are open to US and EU residents only, and the chat handle is
+   how the first conversation actually happens. The referral is optional —
+   these links get forwarded, and requiring a name would turn away anyone who
+   arrived without one. */
 
 const FORM_NAME = 'apply'
 
@@ -30,6 +32,7 @@ interface Values extends Record<string, string> {
   email: string
   chatApp: string
   chatHandle: string
+  referral: string
   /** Which posting this came from. Not shown — it rides along in the POST. */
   posting: string
 }
@@ -69,6 +72,7 @@ export function ApplyForm({ postingCode, postingTitle }: { postingCode: string; 
       email: '',
       chatApp: '',
       chatHandle: '',
+      referral: '',
       posting: `${postingTitle} (${postingCode})`,
     },
     validate,
@@ -104,7 +108,7 @@ export function ApplyForm({ postingCode, postingTitle }: { postingCode: string; 
 
       <h2 className="font-display text-xl font-semibold text-white">Apply for this role</h2>
       <p className="mt-2 text-[0.9375rem] leading-relaxed text-mist">
-        Four details, about a minute. We reply to every application.
+        Takes about a minute. We reply to every application.
       </p>
 
       <div className="mt-7 grid gap-5">
@@ -197,6 +201,16 @@ export function ApplyForm({ postingCode, postingTitle }: { postingCode: string; 
             />
           </Field>
         </div>
+
+        <Field label="Who referred you?" hint="Optional" id={field('referral').id}>
+          <input
+            type="text"
+            autoComplete="off"
+            placeholder="Their name"
+            className={inputClass()}
+            {...field('referral')}
+          />
+        </Field>
       </div>
 
       <AnimatePresence>{status === 'error' ? <FormError /> : null}</AnimatePresence>
