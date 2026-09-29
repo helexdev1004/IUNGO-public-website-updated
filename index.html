@@ -40,9 +40,10 @@
          Netlify registers forms by parsing the HTML it receives at build
          time. It never runs your JavaScript, so it cannot see a form that
          React renders at runtime. This static copy is what registers the
-         forms below and their fields; the real React forms on /contact then
-         POST to them. The field names here must stay in sync with
-         src/components/sections/ContactForm.tsx and CareersForm.tsx.
+         forms below and their fields; the real React forms then POST to
+         them. The field names here must stay in sync with
+         src/components/sections/ContactForm.tsx, CareersForm.tsx and
+         ApplyForm.tsx.
          ==================================================================== -->
 
     <!-- Project enquiries → ContactForm.tsx -->
@@ -63,6 +64,19 @@
       <input type="text" name="location" />
       <input type="text" name="referral" />
       <textarea name="message"></textarea>
+      <input type="text" name="bot-field" />
+    </form>
+
+    <!-- Applications to a specific posting at /apply/<code> → ApplyForm.tsx.
+         "posting" is not filled in by the applicant; it records which posting
+         the application came from. -->
+    <form name="apply" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="text" name="location" />
+      <input type="email" name="email" />
+      <input type="text" name="chatApp" />
+      <input type="text" name="chatHandle" />
+      <input type="text" name="posting" />
       <input type="text" name="bot-field" />
     </form>
 

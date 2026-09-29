@@ -21,6 +21,7 @@ src/
 │  ├─ site.ts            company details, navigation, footer, social links
 │  ├─ services.ts        the six service practices + contact-form dropdowns
 │  ├─ careers.ts         copy shown beside the recruitment form
+│  ├─ apply.ts           job postings served at /apply/<code>
 │  ├─ technology.ts      AI capabilities, tech stack, marquee
 │  ├─ projects.ts        case studies
 │  ├─ team.ts            roster + globe node positions
@@ -60,24 +61,25 @@ hand, and there are no deploy previews.
 
 ---
 
-## The two forms → your inbox
+## The three forms → your inbox
 
-`/contact` carries two forms behind a tab switcher, both posting to **Netlify Forms** with
-no backend and no API key:
+Every form posts to **Netlify Forms** with no backend and no API key. `/contact` carries the
+first two behind a tab switcher; the third belongs to a job posting:
 
 | Form name | Component | Purpose |
 | --- | --- | --- |
 | `contact` | `sections/ContactForm.tsx` | Project enquiries |
-| `careers` | `sections/CareersForm.tsx` | Job applications |
+| `careers` | `sections/CareersForm.tsx` | Open job applications |
+| `apply` | `sections/ApplyForm.tsx` | Applications to one posting at `/apply/<code>` |
 
-Both share one engine — `lib/useNetlifyForm.ts` handles validation, focus management,
-submission and status; `ui/FormField.tsx` holds the field primitives. Adding a third form
+They share one engine — `lib/useNetlifyForm.ts` handles validation, focus management,
+submission and status; `ui/FormField.tsx` holds the field primitives. Adding another form
 means writing its fields and a `validate` function, nothing more.
 
 Netlify registers a form by parsing the HTML it receives at build time, and it never runs
-your JavaScript — so it cannot see a form that React renders at runtime. Both forms are
+your JavaScript — so it cannot see a form that React renders at runtime. All three are
 therefore mirrored by hidden static forms at the bottom of `index.html`. **If you add or
-rename a field in either component, update its twin there or the new field is silently
+rename a field in any of those components, update its twin there or the new field is silently
 dropped.** A quick check: the `name` attributes in each component must exactly match the
 matching hidden form.
 
@@ -88,15 +90,16 @@ this repository controls where submissions are emailed — there is no netlify.t
 no HTML field for it. It has to be done once in the Netlify UI, after the first deploy:
 
 1. **Site configuration → Forms → enable form detection**, then redeploy. On newer Netlify
-   accounts this is off by default, and neither form appears until a build runs with it on.
+   accounts this is off by default, and no form appears until a build runs with it on.
 2. **Forms → Form submission notifications → Add notification → Email notification** →
    enter the team inbox. The address is deliberately not recorded in this repository,
    which is public; it is in `DEPLOYMENT.local.md` alongside this file.
 
-   A notification set to fire **on new submission from any form** covers `contact` and
-   `careers` together — that is the simplest setup and what is configured today. Per-form
-   notifications exist too, if enquiries and applications should reach different inboxes;
-   in that case each form needs its own and configuring one does nothing for the other.
+   A notification set to fire **on new submission from any form** covers `contact`,
+   `careers` and `apply` together — that is the simplest setup and what is configured today.
+   Per-form notifications exist too, if enquiries and applications should reach different
+   inboxes; in that case each form needs its own and configuring one does nothing for the
+   others.
 
 Until both are set, submissions are still captured and visible under **Forms** in the Netlify
 dashboard, but nobody is emailed about them.
@@ -108,8 +111,23 @@ picker, experience dropdown, CV upload or portfolio field, so **an applicant's o
 share a CV or GitHub link is the message body.**
 
 If you later want a file upload, Netlify Forms supports it, but it needs a multipart POST
-instead of the form-encoded one both forms share, plus an `<input type="file">` in the
+instead of the form-encoded one the forms share, plus an `<input type="file">` in the
 hidden static form.
+
+### Job postings at `/apply/<code>`
+
+A posting is an entry in `src/data/apply.ts`, addressed by its `code`:
+`/apply/1e32jsdnn23`. Nothing on the site links to it and it is deliberately left out of
+`public/sitemap.xml` and marked `noindex`, so a posting reaches the people it was sent to
+and not search results. **Deleting the entry retires the posting** — the URL then falls
+through to the 404 page. Adding a second posting is one more object in that array; the page
+and the form are shared.
+
+Its form asks for four things and nothing else — name, location, email and a chat handle
+(Telegram, WhatsApp or Discord). Location is required here, unlike the careers form, because
+these postings are open to US and EU residents only. Each submission also carries a hidden
+`posting` field naming which posting it came from, which is what tells two postings apart in
+the Netlify dashboard.
 
 Three things worth knowing:
 
@@ -151,7 +169,7 @@ Search the project for `TODO(` to find every one of these in place.
       engagements, and the `metrics` values (currently `"Example"`) with figures you can
       evidence. Get client permission before naming anyone.
 - [ ] `src/data/site.ts` — real `url` and social profile links.
-- [ ] Set the Netlify form notifications for **both** `contact` and `careers` (see
+- [ ] Set the Netlify form notifications for **all three** of `contact`, `careers` and `apply` (see
       "Delivering submissions to an inbox" above; the address is in `DEPLOYMENT.local.md`).
       **The site publishes no email address** — these forms are the only way to reach IUNGO,
       so an unconfigured notification means enquiries go nowhere a person will see.

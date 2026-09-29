@@ -13,6 +13,7 @@ const Technology = lazy(() => import('@/pages/Technology'))
 const Projects = lazy(() => import('@/pages/Projects'))
 const Team = lazy(() => import('@/pages/Team'))
 const Contact = lazy(() => import('@/pages/Contact'))
+const Apply = lazy(() => import('@/pages/Apply'))
 const NotFound = lazy(() => import('@/pages/NotFound'))
 
 /** Holds the viewport height while a route chunk loads, so nothing jumps. */
@@ -83,6 +84,15 @@ export default function App() {
             element={
               <Suspense fallback={<RouteFallback />}>
                 <Contact />
+              </Suspense>
+            }
+          />
+          {/* Job postings live at an unguessable code — see data/apply.ts. */}
+          <Route
+            path="apply/:code"
+            element={
+              <Suspense fallback={<RouteFallback />}>
+                <Apply />
               </Suspense>
             }
           />

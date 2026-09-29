@@ -10,6 +10,11 @@ interface SeoProps {
   image?: string
   /** Emits Organization structured data — use on the home page only. */
   organization?: boolean
+  /**
+   * Keeps the page out of search results. For pages reached by a private
+   * link rather than by navigation — a job posting at /apply/<code>, say.
+   */
+  noindex?: boolean
 }
 
 /**
@@ -20,7 +25,14 @@ interface SeoProps {
  * applied client-side: for crawlers that do not run JavaScript, enable
  * Netlify's prerendering or add a prerender step (see README).
  */
-export function Seo({ title, description, path, image, organization = false }: SeoProps) {
+export function Seo({
+  title,
+  description,
+  path,
+  image,
+  organization = false,
+  noindex = false,
+}: SeoProps) {
   const fullTitle = title ? `${title} — ${site.name}` : `${site.name} — ${site.tagline}`
   const url = `${site.url}${path === '/' ? '' : path}`
   const shareImage = image ?? `${site.url}/og-image.png`
@@ -45,6 +57,7 @@ export function Seo({ title, description, path, image, organization = false }: S
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
       <link rel="canonical" href={url} />
+      {noindex ? <meta name="robots" content="noindex, follow" /> : null}
 
       <meta property="og:type" content="website" />
       <meta property="og:site_name" content={site.name} />
