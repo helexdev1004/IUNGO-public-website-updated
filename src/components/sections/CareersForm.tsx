@@ -19,6 +19,7 @@ interface Values extends Record<string, string> {
   name: string
   email: string
   location: string
+  referral: string
   message: string
 }
 
@@ -26,6 +27,7 @@ const initial: Values = {
   name: '',
   email: '',
   location: '',
+  referral: '',
   message: '',
 }
 
@@ -110,19 +112,26 @@ export function CareersForm() {
           />
         </Field>
 
-        {/* Full width: with the fields either side of it gone, a half-width
-            input here would leave a hole in the grid. */}
-        <div className="sm:col-span-2">
-          <Field label="Where you are based" hint="Optional" id={field('location').id}>
-            <input
-              type="text"
-              autoComplete="country-name"
-              placeholder="City, Country"
-              className={inputClass()}
-              {...field('location')}
-            />
-          </Field>
-        </div>
+        <Field label="Where you are based" hint="Optional" id={field('location').id}>
+          <input
+            type="text"
+            autoComplete="country-name"
+            placeholder="City, Country"
+            className={inputClass()}
+            {...field('location')}
+          />
+        </Field>
+
+        {/* Optional on purpose — plenty of good applicants arrive without an
+            introduction, and a required field here would turn them away. */}
+        <Field label="Who referred you?" hint="Optional" id={field('referral').id}>
+          <input
+            type="text"
+            placeholder="Their name"
+            className={inputClass()}
+            {...field('referral')}
+          />
+        </Field>
 
         <div className="sm:col-span-2">
           <Field
