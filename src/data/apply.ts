@@ -73,7 +73,7 @@ export const postings: Posting[] = [
   {
     code: '1e32jsdnn23',
     eyebrow: 'Now hiring · Part-time · US & EU',
-    title: 'AI Training & Data Annotation Freelancer',
+    title: 'Part-Time Independent Collaborator based in US & EU',
     summary:
       'IUNGO Technology is expanding into AI training and data annotation, and we are looking for dedicated part-time freelancers based in the United States and Europe. Around an hour a day, fully remote, and no professional technical experience required.',
 
