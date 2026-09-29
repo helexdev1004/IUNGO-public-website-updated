@@ -24,7 +24,8 @@ const asideCopy: Record<TabId, { heading: string; items: string[] }> = {
 }
 
 export function ContactSection() {
-  const [tab, setTab] = useState<TabId>('project')
+  /* Recruitment leads the page: "Join our team" is the tab a visitor lands on. */
+  const [tab, setTab] = useState<TabId>('careers')
   const reduced = useReducedMotion()
   const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({})
 
