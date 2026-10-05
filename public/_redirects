@@ -1,0 +1,11 @@
+# SPA routing — React Router owns the URLs, so every path that is not a real
+# file must be served index.html. Status 200 (not 301) keeps the URL the
+# visitor typed.
+#
+# This duplicates the redirect in netlify.toml on purpose. netlify.toml lives
+# at the repository root and is NOT copied into dist/, so a site deployed by
+# dragging the dist folder onto Netlify has no redirect rule at all and every
+# route except the homepage 404s. This file ships inside dist/, so routing
+# survives either way. Netlify processes netlify.toml rules first and these
+# second; the two being identical means no conflict.
+/*  /index.html  200
