@@ -74,12 +74,16 @@ export const chatApps: ChatApp[] = [
    a string match would reject, and a false rejection turns away a real
    applicant with no way round it. A list they pick from cannot be wrong.
 
-   Scope follows the posting's own wording — "the United States or Europe",
-   which is wider than the EU: the UK, Norway, Switzerland, Ukraine and the
-   rest of non-EU Europe are all in. Russia, Belarus and Turkey are left out;
-   add them here if a posting should accept them. */
+   Europe here is wider than the EU: the UK, Norway, Switzerland, Ukraine and
+   the rest of non-EU Europe are all in. Russia, Belarus and Turkey are left
+   out; add them here if a posting should accept them.
+
+   Canada is in the list although the posting copy still says "the United
+   States or Europe" throughout — the requirements, the benefits and the
+   validation message below all need rewording if Canada is meant to stay. */
 export const eligibleCountries = [
   'United States',
+  'Canada',
   'Albania',
   'Andorra',
   'Austria',
