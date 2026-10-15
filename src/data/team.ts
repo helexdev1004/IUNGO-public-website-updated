@@ -65,13 +65,6 @@ export const team: TeamMember[] = [
     accent: 'green',
   },
   {
-    name: 'Muhib Siddiqi',
-    role: 'Senior Developer',
-    expertise: [],
-    location: 'United States',
-    accent: 'blue',
-  },
-  {
     name: 'Raliel Dias',
     role: 'HR Manager',
     expertise: [],
