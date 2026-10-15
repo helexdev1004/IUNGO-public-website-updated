@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # Keep in step with site.url in src/data/site.ts and public/sitemap.xml.
-Sitemap: https://iungotech.netlify.app/sitemap.xml
+Sitemap: https://iungotech.com/sitemap.xml

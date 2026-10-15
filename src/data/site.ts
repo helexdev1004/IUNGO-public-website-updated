@@ -28,9 +28,9 @@ export const site = {
   /* The live origin. Drives canonical URLs and Organization structured data,
      so it must match where the site is actually served or search engines are
      told the real page lives somewhere else. No trailing slash.
-     TODO(setup): update this, public/robots.txt and public/sitemap.xml
-     together if a custom domain is added. */
-  url: 'https://iungotech.netlify.app',
+     Change this, public/robots.txt and public/sitemap.xml together — they are
+     three copies of the same fact and disagree silently. */
+  url: 'https://iungotech.com',
 
   /* No public email address by design — the contact form is the only route
      in, which keeps the address off scrapers. Submissions are delivered by
