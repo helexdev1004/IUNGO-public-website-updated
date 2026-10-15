@@ -59,7 +59,7 @@ export const team: TeamMember[] = [
   },
   {
     name: 'Xinning Shen',
-    role: 'Senior Developer',
+    role: 'HR Manager',
     expertise: [],
     location: 'China',
     accent: 'green',
