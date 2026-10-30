@@ -51,6 +51,16 @@ export const team: TeamMember[] = [
     accent: 'green',
   },
   {
+    name: 'Bruno Marzano',
+    role: 'Full Stack Developer',
+    expertise: [],
+    /* Based in Lavras, Brazil. `location` is country-level for everyone on
+       this roster and is what the globe groups by, so the city is recorded
+       here rather than shown on the card. */
+    location: 'Brazil',
+    accent: 'blue',
+  },
+  {
     name: 'Dayu Jiang',
     role: 'Financial Manager',
     expertise: [],

@@ -42,7 +42,7 @@ export const site = {
 
   founded: 2019,
   /* Keep in step with the roster in data/team.ts. */
-  teamSize: '7 specialists',
+  teamSize: '8 specialists',
 
   /* The LinkedIn slug is the percent-encoded company name in Chinese
      (南京衍构科技有限公司). Left encoded on purpose — it is the form LinkedIn
