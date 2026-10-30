@@ -1,6 +1,7 @@
 import { Seo } from '@/components/Seo'
 import { CommunityForm } from '@/components/sections/CommunityForm'
 import { PageHero } from '@/components/sections/PageHero'
+import { Button } from '@/components/ui/Button'
 import { Container } from '@/components/ui/Container'
 import { GlassCard } from '@/components/ui/GlassCard'
 import { Icon } from '@/components/ui/Icon'
@@ -12,6 +13,7 @@ import {
   communityValues,
   expertiseAreas,
 } from '@/data/community'
+import { site } from '@/data/site'
 
 /* The AI Community page: an open call for domain experts to join the network,
    and the form they join through. Copy lives in data/community.ts. */
@@ -23,6 +25,9 @@ export default function AiCommunity() {
         title="AI Community"
         description="A professional community connecting scientists, software developers, researchers, engineers and financial experts with AI training and evaluation opportunities. Free to join for domain experts."
         path="/ai-community"
+        /* The community banner doubles as this page's share card. Absolute,
+           because link scrapers do not resolve root-relative paths. */
+        image={`${site.url}/ai-community-banner.jpg`}
       />
 
       <PageHero
@@ -53,24 +58,37 @@ export default function AiCommunity() {
         </Reveal>
 
         <Reveal delay={0.18}>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a
-              href="#join"
-              className="group relative inline-flex h-13 items-center justify-center gap-2 rounded-full bg-[linear-gradient(100deg,var(--color-brand-green),var(--color-brand-green-soft)_45%,var(--color-brand-blue-soft))] bg-[length:180%_auto] bg-left px-7 text-base font-semibold whitespace-nowrap text-void shadow-[0_8px_30px_-8px_rgb(142_214_43/0.55)] transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-right hover:shadow-[0_12px_44px_-8px_rgb(142_214_43/0.75)]"
-            >
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <Button href="#join" size="lg" withArrow>
               Apply to join
-              <Icon
-                name="arrowRight"
-                size={17}
-                className="transition-transform duration-300 group-hover:translate-x-1"
-              />
-            </a>
+            </Button>
 
             <span className="glass inline-flex h-13 items-center gap-2.5 rounded-full px-6 text-[0.9375rem] text-frost">
               <Icon name="check" size={16} className="text-brand-green" />
               Free for domain experts
             </span>
           </div>
+        </Reveal>
+
+        {/* Community banner. Served as WebP with a JPEG fallback — the source
+            PNG was 2.1MB, which is larger than the entire JS bundle. The
+            width/height attributes reserve the box so the hero does not jump
+            when it loads, and the alt text carries what the artwork says,
+            since its lettering is unreadable at phone width. */}
+        <Reveal delay={0.24}>
+          <figure className="ring-gradient relative mt-12 overflow-hidden rounded-2xl">
+            <picture>
+              <source srcSet="/ai-community-banner.webp" type="image/webp" />
+              <img
+                src="/ai-community-banner.jpg"
+                alt="IUNGO Technology AI Training & Expert Collaboration Community — scientists, software developers, researchers, engineers and finance specialists working together around a globe of connected data."
+                width={1672}
+                height={941}
+                decoding="async"
+                className="block w-full"
+              />
+            </picture>
+          </figure>
         </Reveal>
       </PageHero>
 
@@ -245,6 +263,7 @@ export default function AiCommunity() {
                 <ul className="mt-5 space-y-3.5">
                   {[
                     'A member of the team reads your application — it is not filtered by a keyword bot.',
+                    'We check your LinkedIn profile against what you have told us. That is what keeps the network verified.',
                     'If your background fits, you receive an invitation to our Slack workspace.',
                     'We point you toward the platforms and projects that match your field.',
                     'We reply either way, including when the answer is no.',

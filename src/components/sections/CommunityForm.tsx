@@ -64,6 +64,16 @@ function validate(values: Values) {
   if (!values.role.trim()) errors.role = 'Please tell us your current or most recent role.'
   if (!values.experience) errors.experience = 'Please choose your level of experience.'
 
+  /* Required because this is how an application gets verified — a name and a
+     field of expertise cannot be checked, a profile can. Deliberately lenient
+     about the format: any linkedin.com address passes, with or without the
+     protocol or the www. */
+  if (!values.profile.trim()) {
+    errors.profile = 'Please add your LinkedIn profile so we can verify your background.'
+  } else if (!/linkedin\.com\//i.test(values.profile.trim())) {
+    errors.profile = 'Please paste the full address of your profile, e.g. linkedin.com/in/janedoe.'
+  }
+
   if (!values.background.trim()) {
     errors.background = 'Please tell us about your background.'
   } else if (values.background.trim().length < 40) {
@@ -234,15 +244,17 @@ export function CommunityForm() {
         </Field>
 
         <Field
-          label="LinkedIn, GitHub or site"
-          hint="Optional"
+          label="LinkedIn profile"
+          required
+          error={errors.profile}
           id={field('profile').id}
+          errorId={errorId('profile')}
         >
           <input
             type="text"
             autoComplete="url"
             placeholder="linkedin.com/in/janedoe"
-            className={inputClass()}
+            className={inputClass(errors.profile)}
             {...field('profile')}
           />
         </Field>
