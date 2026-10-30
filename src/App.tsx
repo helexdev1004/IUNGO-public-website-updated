@@ -12,6 +12,7 @@ const AiSolutions = lazy(() => import('@/pages/AiSolutions'))
 const Technology = lazy(() => import('@/pages/Technology'))
 const Projects = lazy(() => import('@/pages/Projects'))
 const Team = lazy(() => import('@/pages/Team'))
+const AiCommunity = lazy(() => import('@/pages/AiCommunity'))
 const Contact = lazy(() => import('@/pages/Contact'))
 const Apply = lazy(() => import('@/pages/Apply'))
 const NotFound = lazy(() => import('@/pages/NotFound'))
@@ -76,6 +77,14 @@ export default function App() {
             element={
               <Suspense fallback={<RouteFallback />}>
                 <Team />
+              </Suspense>
+            }
+          />
+          <Route
+            path="ai-community"
+            element={
+              <Suspense fallback={<RouteFallback />}>
+                <AiCommunity />
               </Suspense>
             }
           />

@@ -85,6 +85,7 @@ export const nav: NavItem[] = [
       },
     ],
   },
+  { label: 'AI Community', href: '/ai-community' },
   { label: 'Projects', href: '/projects' },
   { label: 'Team', href: '/team' },
 ]
@@ -95,6 +96,7 @@ export const footerNav = [
     links: [
       { label: 'About Us', href: '/about' },
       { label: 'Our Team', href: '/team' },
+      { label: 'AI Community', href: '/ai-community' },
       { label: 'Projects', href: '/projects' },
       { label: 'Contact', href: '/contact' },
     ],
