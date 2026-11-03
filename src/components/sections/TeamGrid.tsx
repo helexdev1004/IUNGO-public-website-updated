@@ -1,5 +1,6 @@
 import { GlassCard } from '@/components/ui/GlassCard'
 import { Icon } from '@/components/ui/Icon'
+import { Monogram } from '@/components/ui/Monogram'
 import { Reveal } from '@/components/ui/Reveal'
 import { team } from '@/data/team'
 import { cn } from '@/lib/cn'
@@ -58,20 +59,16 @@ export function TeamGrid({ limit }: TeamGridProps) {
                     className="relative h-14 w-14 rounded-2xl object-cover"
                   />
                 ) : (
-                  /* Styled as a deliberate monogram rather than a grey box:
-                     a missing headshot should read as a design choice, not
-                     as an image that failed to load. */
-                  <span
-                    className={cn(
-                      'relative flex h-14 w-14 items-center justify-center rounded-2xl',
-                      'font-display text-lg font-bold ring-1 ring-inset',
-                      member.accent === 'green'
-                        ? 'bg-[linear-gradient(140deg,rgb(142_214_43/0.18),rgb(142_214_43/0.04))] text-brand-green ring-brand-green/25'
-                        : 'bg-[linear-gradient(140deg,rgb(41_182_246/0.18),rgb(41_182_246/0.04))] text-brand-blue ring-brand-blue/25',
-                    )}
-                  >
-                    {initials(member.name)}
-                  </span>
+                  /* Geometry generated from the name, so a roster without
+                     photographs reads as a designed set rather than a row of
+                     identical grey boxes. Abstract by design — a placeholder
+                     should never imply a face. */
+                  <Monogram
+                    name={member.name}
+                    initials={initials(member.name)}
+                    accent={member.accent}
+                    className="relative block h-14 w-14 rounded-2xl"
+                  />
                 )}
               </div>
 

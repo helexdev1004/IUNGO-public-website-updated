@@ -3,8 +3,14 @@
 
    TODO(content): these entries are placeholders that set the shape of a good
    case study — challenge, solution, stack, result. Replace each with a
-   delivered engagement, swap the "Example" metrics for figures you can
-   evidence, and confirm client permission before naming anyone.
+   delivered engagement, and confirm client permission before naming anyone.
+   They currently render as delivered work, complete with a client and a year,
+   which is the most consequential untruth on the site: fix these before
+   worrying about anything cosmetic.
+
+   The `metrics` field was removed. Nothing rendered it, so its placeholder
+   strings only ever shipped to visitors inside the JavaScript bundle. Add it
+   back alongside the UI that displays it, once there are figures to show.
    ========================================================================== */
 
 import type { IconName } from '@/components/ui/Icon'
@@ -22,7 +28,6 @@ export interface Project {
   solution: string
   stack: string[]
   result: string
-  metrics: { value: string; label: string }[]
 }
 
 export const projects: Project[] = [
@@ -41,10 +46,6 @@ export const projects: Project[] = [
     stack: ['Python', 'FastAPI', 'PostgreSQL', 'pgvector', 'React', 'TypeScript', 'AWS'],
     result:
       'Agents resolved common queries without leaving the support console, and every answer carried a source link a human could verify.',
-    metrics: [
-      { value: 'Example', label: 'Replace with a measured result' },
-      { value: 'Example', label: 'Replace with a measured result' },
-    ],
   },
   {
     id: 'enterprise-platform',
@@ -61,10 +62,6 @@ export const projects: Project[] = [
     stack: ['Node.js', 'TypeScript', 'PostgreSQL', 'Redis', 'Docker', 'Kubernetes'],
     result:
       'Reconciliation moved from a manual week to an automated daily pipeline, with an audit trail on every record.',
-    metrics: [
-      { value: 'Example', label: 'Replace with a measured result' },
-      { value: 'Example', label: 'Replace with a measured result' },
-    ],
   },
   {
     id: 'ecommerce',
@@ -81,10 +78,6 @@ export const projects: Project[] = [
     stack: ['Next.js', 'TypeScript', 'Shopify', 'Stripe', 'Vercel Edge', 'BigQuery'],
     result:
       'Checkout became measurably faster on the devices customers actually use, and stock levels stopped diverging from reality.',
-    metrics: [
-      { value: 'Example', label: 'Replace with a measured result' },
-      { value: 'Example', label: 'Replace with a measured result' },
-    ],
   },
   {
     id: 'immersive',
@@ -101,10 +94,6 @@ export const projects: Project[] = [
     stack: ['Three.js', 'WebGL', 'React', 'TypeScript', 'Draco', 'KTX2'],
     result:
       'The configurator holds a smooth frame rate on mid-range mobile hardware, where the previous version had been unusable.',
-    metrics: [
-      { value: '60fps', label: 'Target frame rate on mid-range mobile' },
-      { value: 'Example', label: 'Replace with a measured result' },
-    ],
   },
   {
     id: 'automation',
@@ -121,10 +110,6 @@ export const projects: Project[] = [
     stack: ['Python', 'Django', 'Celery', 'PostgreSQL', 'AWS Lambda'],
     result:
       'Onboarding progress became visible to the whole team, and routine steps stopped waiting on someone to remember them.',
-    metrics: [
-      { value: 'Example', label: 'Replace with a measured result' },
-      { value: 'Example', label: 'Replace with a measured result' },
-    ],
   },
   {
     id: 'computer-vision',
@@ -141,9 +126,5 @@ export const projects: Project[] = [
     stack: ['Python', 'PyTorch', 'OpenCV', 'ONNX Runtime', 'Docker'],
     result:
       'Inspection runs consistently at line speed, with borderline cases routed to a human reviewer rather than guessed at.',
-    metrics: [
-      { value: 'Example', label: 'Replace with a measured result' },
-      { value: 'Example', label: 'Replace with a measured result' },
-    ],
   },
 ]
