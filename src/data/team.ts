@@ -24,6 +24,19 @@ export interface TeamMember {
   location: string
   /** Optional headshot, e.g. '/team/polaris.jpg' (files live in /public/team). */
   photo?: string
+  /**
+   * One or two sentences: what this person actually does here. Write a
+   * different one for each person — near-identical bios are the clearest
+   * tell of a template filled in by nobody.
+   */
+  bio?: string
+  /**
+   * Full URL to their LinkedIn profile. This is the single strongest signal
+   * that a team page describes real people, because it is the one claim on
+   * the card a visitor can check for themselves. A dead or missing link is
+   * worth less than no link at all — omit it rather than point it at '#'.
+   */
+  linkedin?: string
   accent: 'green' | 'blue'
 }
 

@@ -58,10 +58,16 @@ export function TeamGrid({ limit }: TeamGridProps) {
                     className="relative h-14 w-14 rounded-2xl object-cover"
                   />
                 ) : (
+                  /* Styled as a deliberate monogram rather than a grey box:
+                     a missing headshot should read as a design choice, not
+                     as an image that failed to load. */
                   <span
                     className={cn(
-                      'relative flex h-14 w-14 items-center justify-center rounded-2xl bg-surface-2 font-display text-lg font-bold',
-                      member.accent === 'green' ? 'text-brand-green' : 'text-brand-blue',
+                      'relative flex h-14 w-14 items-center justify-center rounded-2xl',
+                      'font-display text-lg font-bold ring-1 ring-inset',
+                      member.accent === 'green'
+                        ? 'bg-[linear-gradient(140deg,rgb(142_214_43/0.18),rgb(142_214_43/0.04))] text-brand-green ring-brand-green/25'
+                        : 'bg-[linear-gradient(140deg,rgb(41_182_246/0.18),rgb(41_182_246/0.04))] text-brand-blue ring-brand-blue/25',
                     )}
                   >
                     {initials(member.name)}
@@ -84,6 +90,10 @@ export function TeamGrid({ limit }: TeamGridProps) {
               </div>
             </div>
 
+            {member.bio ? (
+              <p className="mt-4 text-[0.875rem] leading-relaxed text-mist">{member.bio}</p>
+            ) : null}
+
             {/* Omitted entirely when no expertise is listed, so a card with
                 none does not carry the margin of an empty list. */}
             {member.expertise.length > 0 ? (
@@ -96,10 +106,27 @@ export function TeamGrid({ limit }: TeamGridProps) {
               </ul>
             ) : null}
 
-            <p className="mt-5 flex items-center gap-2 border-t border-white/[0.06] pt-4 text-[0.8125rem] text-mist-dim">
-              <Icon name="mapPin" size={14} className="text-mist-dim" />
-              {member.location}
-            </p>
+            <div className="mt-5 flex items-center justify-between gap-3 border-t border-white/[0.06] pt-4 text-[0.8125rem]">
+              <p className="flex items-center gap-2 text-mist-dim">
+                <Icon name="mapPin" size={14} className="text-mist-dim" />
+                {member.location}
+              </p>
+
+              {/* Rendered only when a real profile exists. A placeholder link
+                  would undermine exactly the thing it is here to establish. */}
+              {member.linkedin ? (
+                <a
+                  href={member.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${member.name} on LinkedIn`}
+                  className="flex items-center gap-1.5 font-medium text-mist transition-colors hover:text-brand-green"
+                >
+                  <Icon name="linkedin" size={14} />
+                  LinkedIn
+                </a>
+              ) : null}
+            </div>
           </GlassCard>
         </Reveal>
       ))}
